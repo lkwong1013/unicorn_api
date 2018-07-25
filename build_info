@@ -26,6 +26,7 @@ phases:
       - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - REPOSITORY_URI=$ECR_REPO
+      - echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
   build:
     commands:
